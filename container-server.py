@@ -54,20 +54,22 @@ def images_index():
     List all images 
     
     Complete the code below generating a valid response. 
+
+    curl -s -X GET -H 'Accept: application/json' http://localhost:8081/images | python -mjason.tool
     """
     output = docker('images')
-    resp = json.dumps(docker(docker_images_to_array(output))
+    resp = json.dumps(docker_images_to_array(output))
     return Response(response=resp, mimetype="application/json")
 
 @app.route('/containers/<id>', methods=['GET'])
 def containers_show(id):
     """
     Inspect specific container
-
+    docker inspect
     """
-
-    resp = ''
-
+    
+    output = docker('inspect', id)
+    resp = json.dumps(docker_inspect_to_array(output))
     return Response(response=resp, mimetype="application/json")
 
 @app.route('/containers/<id>/logs', methods=['GET'])
