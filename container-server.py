@@ -56,6 +56,7 @@ def images_index():
     Complete the code below generating a valid response. 
 
     curl -s -X GET -H 'Accept: application/json' http://localhost:8080/images | python -mjson.tool
+    curl -s -X GET -H 'Accept: application/json' http://localhost:8080/images | python -mjason.tool
     """
     output = docker('images')
     resp = json.dumps(docker_images_to_array(output))
